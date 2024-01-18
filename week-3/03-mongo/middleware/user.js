@@ -1,4 +1,4 @@
-const { User }= require (" ../db");
+const { User }= require ("03-mongo\db");
 
 function userMiddleware(req, res, next) {
     // Implement user auth logic
