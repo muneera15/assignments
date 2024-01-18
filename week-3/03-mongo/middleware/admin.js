@@ -1,4 +1,4 @@
-const { Admin } = require("../db");
+const { Admin } = require("03-mongo\db");
 
 // Middleware for handling auth
 function adminMiddleware(req, res, next) {
