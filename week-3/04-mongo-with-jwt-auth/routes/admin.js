@@ -23,9 +23,16 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/signin', async (req, res) => {
+<<<<<<< HEAD
     // Implement admin signin logic
     const username = req.body.username;
     const password = req.body.password;
+=======
+    // Implement admin signup logic
+    const username = req.body.username;
+    const password = req.body.password;
+    console.log(JWT_SECRET);
+>>>>>>> 0d2363015164d46b40a29d13f8cf61453e1e8334
 
     const user = await User.find({
         username,
@@ -41,7 +48,11 @@ router.post('/signin', async (req, res) => {
         })
     } else {
         res.status(411).json({
+<<<<<<< HEAD
             message: "Incorrect email and password"
+=======
+            message: "Incorrect email and pass"
+>>>>>>> 0d2363015164d46b40a29d13f8cf61453e1e8334
         })
     }
 });

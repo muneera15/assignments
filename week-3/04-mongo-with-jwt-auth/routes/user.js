@@ -58,7 +58,13 @@ router.post('/courses/:courseId', userMiddleware, async(req, res) => {
         }
     })
     // Implement course purchase logic
+<<<<<<< HEAD
     res.json({msg : "course is prchased"})
+=======
+    const username = req.username;
+    console.log(username);
+
+>>>>>>> 0d2363015164d46b40a29d13f8cf61453e1e8334
 });
 
 router.get('/purchasedCourses', userMiddleware, async (req, res) => {
