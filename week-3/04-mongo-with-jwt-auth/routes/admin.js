@@ -23,10 +23,9 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/signin', async (req, res) => {
-    // Implement admin signup logic
+    // Implement admin signin logic
     const username = req.body.username;
     const password = req.body.password;
-    console.log(JWT_SECRET);
 
     const user = await User.find({
         username,
@@ -42,7 +41,7 @@ router.post('/signin', async (req, res) => {
         })
     } else {
         res.status(411).json({
-            message: "Incorrect email and pass"
+            message: "Incorrect email and password"
         })
     }
 });

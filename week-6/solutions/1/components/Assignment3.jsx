@@ -2,21 +2,26 @@ import React, { useState, useMemo } from 'react';
 // You have been given a list of items you shopped from the grocery store
 // You need to calculate the total amount of money you spent
 
-<<<<<<< HEAD
-const Assignment3 = () => {
-=======
 export const Assignment3 = () => {
->>>>>>> upstream/master
     const [items, setItems] = useState([
         { name: 'Chocolates', value: 10 },
         { name: 'Chips', value: 20 },
         { name: 'Onion', value: 30 },
         { name: 'Tomato', value: 30 },
+        { name: 'Tomato', value: 100 },
         // Add more items as needed
     ]);
 
     // Your code starts here
-    const totalValue = 0;
+    // reducer
+    const totalValue = useMemo(() => {
+        let totalValue = 0;
+        for (let i = 0; i < items.length; i++) {
+            totalValue = totalValue + items[i].value;
+        }
+        return totalValue    
+    }, [items])
+    
     // Your code ends here
     return (
         <div>
@@ -29,8 +34,3 @@ export const Assignment3 = () => {
         </div>
     );
 };
-<<<<<<< HEAD
-
-export default Assignment3;
-=======
->>>>>>> upstream/master
