@@ -6,7 +6,13 @@
   "directories": {
     "test": "tests"
   },
+  {
   "keywords": [],
   "author": "",
   "license": "ISC"
+},
+"scripts": {
+  "build" : "webpack --config webpack/webpack.config.prod.js --colors",
+  "start"  : "webpack-dev-server --open --config webpack/webpack.config.dev.js"
+}
 }

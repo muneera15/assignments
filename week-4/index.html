@@ -4,19 +4,26 @@
 <head>
   <script>
     let globalId = 1;
-    let todoState = [];
+    let todoState =[];
     let oldTodoState = [];
 
-    function addTodoToDom() {
-      
+    function addTodoToDom(todo) {
+      const todoContainer = document.getElementById("todos");
+      const todoDiv = document.createElement("div");
+      todoDiv.innerHTML = `<p>${todo.title}</p><p>${todo.description}</p>`;
+      todoDiv.id = `todo-${todo.id}`
+      todoContainer.appendChild(todoDiv)
+      console.log(todo.id)
     }
 
     function removeTodoFromDom(todo) {
-      
+      const todoDiv =document.getElementById(`todo-${todo.id}`);
+      todoDiv.parentNode.removeChild(todoDiv);
     }
 
     function updateTodoInDom(oldTodo, newTodo) {
-        
+        const todoDiv = document.getElementById(`todo-${oldTodo.id}`);
+        todoDiv.innerHTML = `<p>${newTodo.title}</p><p>${newTodo.description}</p>`
     }
 
     function updateState(newTodos) {
@@ -28,6 +35,25 @@
       const added = [];
       const deleted = [];
       const updated = [];
+      newTodos.forEach((newTodo)=>{
+        const oldTodo = oldTodoState.find((todo) => todo.id === newTodo.id);
+        if(!oldTodo){
+          added.push(newTodo);
+        }
+        else if (oldTodo.title !== newTodo.title || oldTodo.description !== newTodo.description){
+          updated.push({oldTodo,newTodo});
+        }
+      });
+      oldTodoState.forEach((oldTodo)=>{
+        const stillExists = newTodos.some((todo)=> todo.id === oldTodo.id);
+        if(!stillExists){
+          deleted.push(oldTodo)
+        }
+      })
+      added.forEach(addTodoToDom);
+      updated.forEach(({oldTodo,newTodo})=> updateTodoInDom(oldTodo,newTodo));
+      deleted.forEach(removeTodoFromDom);
+
       // calculate these 3 arrays
       // call addTodo, removeTodo, updateTodo functions on each of the
       // elements
@@ -35,21 +61,24 @@
     }
 
     function addTodo() {
+      const numberOfTodos = 10;
+      for(let i =0; i< numberOfTodos; i++){
       const title = document.getElementById("title").value;
       const description = document.getElementById("description").value;
       todoState.push({
         title: title,
         description: description,
         id: globalId++,
-      })
+      });
+    }
       updateState(todoState);
     }
   </script>
 </head>
 
 <body>
-  <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
-  <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
+  <input type="text" id="title" placeholder="Todo title"/> <br /><br />
+  <input type="text" id="description" placeholder="Todo description"/> <br /><br />
   <button onclick="addTodo()">Add todo</button>
   <br /> <br />
 
@@ -57,5 +86,4 @@
 
   </div>
 </body>
-
 </html>
