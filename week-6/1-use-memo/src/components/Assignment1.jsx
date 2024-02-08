@@ -11,6 +11,7 @@ export function Assignment1() {
         for (let i =1; i<= input; i++){
             expensiveValue = expensiveValue * i;
         }
+        return expensiveValue
     },[input]);
     
     // Your solution ends here
